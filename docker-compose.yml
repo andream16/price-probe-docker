@@ -1,0 +1,26 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: priceprobe
+      POSTGRES_USER: postgres
+    ports:
+      - "9042:5432"
+  backend:
+    build: ./backend
+    command: ["./wait-for-it.sh", "db:5432", "--", "go", "run", "server.go", "-environment=production"]
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    links:
+      - db
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+    links:
+      - backend
