@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   db:
     image: postgres
@@ -11,7 +11,7 @@ services:
     build: ./backend
     command: ["./wait-for-it.sh", "db:5432", "--", "go", "run", "server.go", "-environment=production"]
     ports:
-      - "8080:8080"
+      - "80:80"
     depends_on:
       - db
     links:
