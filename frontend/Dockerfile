@@ -12,7 +12,7 @@ RUN git clone https://github.com/AndreaM16/price-probe-ui-v2.git
 WORKDIR ./price-probe-ui-v2
 RUN npm i
 RUN npm rebuild node-sass --force
-RUN ng build --environment=prod
+RUN ng build --environment=prod --aot=true --build-optimizer=true
 
 # Nginx
 FROM nginx:alpine
