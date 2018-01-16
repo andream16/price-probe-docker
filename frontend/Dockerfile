@@ -1,6 +1,6 @@
 FROM node:8.9-alpine as angular-built
 
-# Gyp dependencies
+# Node-Gyp dependencies
 RUN apk add --no-cache make gcc g++ python2 git && \
   npm install --production --silent && \
   apk del make gcc g++ python2
